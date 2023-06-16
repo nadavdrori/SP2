@@ -325,7 +325,7 @@ double *kmeans(double *vector_data, int *centroid_index_list, int vector_len, in
     return centroid_data;
 }
 
-int main(int argc, char **argv)
-{
-    return 0;
-}
+// int main(int argc, char **argv)
+// {
+//     return 0;
+// }
