@@ -41,9 +41,6 @@ static PyObject *fit(PyObject *self, PyObject *args) // function called from Pyt
     }
 
     final_centroids = kmeans(coor_arr, centroids, vec_size, arr_size, k, iter, eps);
-    // printf("%f\n", final_centroids[0]);
-    // printf("%f\n", final_centroids[1]);
-    // printf("%f\n", final_centroids[2]);
 
     PyObject *centroids_list = PyList_New(0);
     for (i = 0; i < k * vec_size; i++)
@@ -54,8 +51,6 @@ static PyObject *fit(PyObject *self, PyObject *args) // function called from Pyt
     free(centroids);
     free(final_centroids);
     return centroids_list;
-    /* This builds the answer ("d" = Convert a C double to a Python floating point number) back into a python object
-    return Py_BuildValue("[f]", /*NAME OF FUNC FROM HM1 geo_c(z, n));  Py_BuildValue(...) returns a PyObject*  */
 }
 
 static PyMethodDef kmeansMethods[] = {

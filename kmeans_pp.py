@@ -13,7 +13,6 @@ def create_vector_dataframe(file1, file2):
     db1.columns = cols
     db1['index'] = db1['index'].astype(int)
     db1 = db1.set_index('index')
-    #print(db1.head())
 
     db2 = pd.read_csv(file2, header=None)
     db2_number_of_data_points = len(db2.columns) - 1
@@ -23,18 +22,14 @@ def create_vector_dataframe(file1, file2):
     db2.columns = cols
     db2['index'] = db2['index'].astype(int)
     db2 = db2.set_index('index')
-    #print(db2.head())
     db = pd.merge(db1, db2, left_index=True, right_index=True)
     db = db.sort_index()
     return db
 
 
-def calc_dist(vector1_index, vector2_index, vector_dataframe):  # complete
-    temp = vector_dataframe.loc[[vector1_index, vector2_index]] # dataframe with 2 vectors
+def calc_dist(vector1_index, vector2_index, vector_dataframe):
+    temp = vector_dataframe.loc[[vector1_index, vector2_index]] 
     return np.linalg.norm(temp.iloc[1] - temp.iloc[0])
-
-# centroid list must not be empty
-
 
 def compute_dx(vector_index, vector_dataframe, centroid_index_list):
     min_centroid_index = None
@@ -48,13 +43,11 @@ def compute_dx(vector_index, vector_dataframe, centroid_index_list):
 
 
 def compute_dx_tuple(vector_dataframe, centroid_index_list):
-    #print([vector_index for vector_index in db.index.values])
     return [compute_dx(vector_index, vector_dataframe, centroid_index_list) for vector_index in vector_dataframe.index.values]
 
 
 def compute_weights(vector_dataframe, centroid_index_list):
     dx_tuple = compute_dx_tuple(vector_dataframe, centroid_index_list)
-    #print(dx_tuple)
     return dx_tuple/sum(dx_tuple)
 
 def compute_centroids(vector_dataframe, k):
@@ -64,13 +57,9 @@ def compute_centroids(vector_dataframe, k):
             temp = np.random.choice(vector_dataframe.index.values)
         else:
             weight_list = compute_weights(vector_dataframe, centroid_index_list)
-            #print(weight_list)
-            #print(sum(weight_list))
             temp = np.random.choice(vector_dataframe.index.values, p = weight_list)
         centroid_index_list.append(temp)
     return centroid_index_list
-
-# add error incase k is bigger than n?
 
 def create_coor_array(vector_dataframe):
     coor_arr = []
@@ -130,8 +119,6 @@ def main():
     temp = compute_centroids(db, k)
     
     results = km.fit(iter, eps, k, vec_num, vec_size, temp_coor_arr, temp)
-    #print(temp)
-    #print(results)
     
     print(','.join([str(item) for item in temp]))
     print('\n'.join( [vector_str(vector) for vector in get_vector_list_from_data(results, vec_size)] ))
