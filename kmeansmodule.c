@@ -1,20 +1,18 @@
-
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
 #include "cap.h"
 
 static PyObject *fit(PyObject *self, PyObject *args) // function called from Python file
 {
-    int iter, eps, k, vec_num, vec_size, i, arr_size, centroid;
+    int iter, k, vec_num, vec_size, i, arr_size, centroid;
+    double eps;
     double *coor_arr, *final_centroids;
     int *centroids;
     double num;
     PyObject *item, *temp_coor_arr, *temp_centroids;
     /* This parses the Python arguments into a double (d)  variable named z and int (i) variable named n*/
-    if (!PyArg_ParseTuple(args, "iiiiiOO", &iter, &eps, &k, &vec_num, &vec_size, &temp_coor_arr, &temp_centroids))
+    if (!PyArg_ParseTuple(args, "idiiiOO", &iter, &eps, &k, &vec_num, &vec_size, &temp_coor_arr, &temp_centroids))
     {
-        printf("An Error Has Occurred");
-        exit(1);
         return NULL; /*In the CPython API, a NULL value is never valid for a PyObject* so it is used to signal that an error has occurred. */
     }
 
@@ -26,7 +24,6 @@ static PyObject *fit(PyObject *self, PyObject *args) // function called from Pyt
     {
         printf("An Error Has Occurred");
         exit(1);
-        return NULL;
     }
 
     for (i = 0; i < arr_size; i++)
@@ -40,17 +37,22 @@ static PyObject *fit(PyObject *self, PyObject *args) // function called from Pyt
     {
         item = PyList_GetItem(temp_centroids, i);
         centroid = (int)PyLong_AsLong(item);
-        centroids[i] = num;
+        centroids[i] = centroid;
     }
 
     final_centroids = kmeans(coor_arr, centroids, vec_size, arr_size, k, iter, eps);
+    // printf("%f\n", final_centroids[0]);
+    // printf("%f\n", final_centroids[1]);
+    // printf("%f\n", final_centroids[2]);
 
-    PyObject *centroids_list = PyList_New(arr_size);
+    PyObject *centroids_list = PyList_New(0);
     for (i = 0; i < k * vec_size; i++)
     {
         PyList_Append(centroids_list, PyFloat_FromDouble(final_centroids[i]));
     }
-
+    free(coor_arr);
+    free(centroids);
+    free(final_centroids);
     return centroids_list;
     /* This builds the answer ("d" = Convert a C double to a Python floating point number) back into a python object
     return Py_BuildValue("[f]", /*NAME OF FUNC FROM HM1 geo_c(z, n));  Py_BuildValue(...) returns a PyObject*  */

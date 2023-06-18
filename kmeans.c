@@ -36,6 +36,8 @@
 //     }
 // }
 
+void print_double_pointer(int len, double *p);
+
 double **create_vector_pointers(int vector_len, int vector_data_len, double *vector_data)
 {
     double **tmp;
@@ -52,6 +54,13 @@ double **create_vector_pointers(int vector_len, int vector_data_len, double *vec
 
 double *create_centroid_data(double *vector_data, int k, int vector_len, int *centroid_index_list)
 {
+
+    //int foo = *centroid_index_list;
+    //printf("%d", foo);
+    //print_double_pointer(100 * vector_len, vector_data);
+    //printf((int)*centroid_index_list);
+    //printf(*centroid_index_list +1 );
+    //printf(*centroid_index_list+2);
     double *tmp;
     int i, j;
     int centroid_data_len = k * vector_len;
@@ -69,6 +78,9 @@ double *create_centroid_data(double *vector_data, int k, int vector_len, int *ce
             *(tmp + (j * vector_len) + i) = *(vector_data + ((*(centroid_index_list + j)) * vector_len) + i); // maybe (*(centroid_index_list + j) - 1)
         }
     }
+    //print("tfffuck?");
+    //print_double_pointer(k * vector_len, tmp);
+    return tmp;
 }
 
 double *create_backup_centroid_data(int k, int vector_len)
@@ -241,7 +253,7 @@ void kmeans_algorithm(double **vector_pointers, double *centroid_data, double *b
     }
 }
 
-double *kmeans(double *vector_data, int *centroid_index_list, int vector_len, int vector_data_len, int k, int iter, int epsilon)
+double *kmeans(double *vector_data, int *centroid_index_list, int vector_len, int vector_data_len, int k, int iter, double epsilon)
 {
     // int iter = 200;
     // double n;
@@ -309,13 +321,12 @@ double *kmeans(double *vector_data, int *centroid_index_list, int vector_len, in
     }
 
     kmeans_algorithm(vector_pointers, centroid_data, backup_centroid_data, vector_data_len, vector_len, centroid_pointers, backup_centroid_pointers, k, vector_to_centroid_relations, iter, epsilon, counter);
-    for (i = 0; i < k; i++)
-    {
-        print_double_pointer(vector_len, *(centroid_pointers + i));
-    }
+
+    // printf("%f\n", centroid_data[0]);
+    // printf("%f\n", centroid_data[1]);
+    // printf("%f\n", centroid_data[2]);
 
     free(vector_pointers);
-    free(centroid_data);
     free(centroid_pointers);
     free(backup_centroid_data);
     free(backup_centroid_pointers);
@@ -325,7 +336,7 @@ double *kmeans(double *vector_data, int *centroid_index_list, int vector_len, in
     return centroid_data;
 }
 
-// int main(int argc, char **argv)
-// {
-//     return 0;
-// }
+ int main(int argc, char **argv)
+ {
+     return 0;
+ }
