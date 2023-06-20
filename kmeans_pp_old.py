@@ -5,6 +5,7 @@ import kmeansmodule as km
 
 
 def create_vector_dataframe(file1, file2):
+
     db1 = pd.read_csv(file1, header=None)
     db1_number_of_data_points = len(db1.columns) - 1
     cols = ['index']
@@ -25,42 +26,38 @@ def create_vector_dataframe(file1, file2):
     db = db.sort_index()
     return db
 
-def get_centroid_distance_series(centroid_index, vector_dataframe):
-    res = vector_dataframe.copy()
-    temp = res.loc[centroid_index]
-    temp_db = res.copy()
-    temp_db = temp_db - temp
-    temp_db = temp_db.pow(2)
-    temp = temp_db.sum(axis=1)
-    return temp.pow(0.5)
 
-def add_dx(vector_dataframe_with_centroids):
-    res = vector_dataframe_with_centroids.copy()
-    temp_db = res.filter(regex='^c_',axis=1)
-    temp = temp_db.min(axis=1)
-    res['dx'] = temp
-    return res
+def calc_dist(vector1_index, vector2_index, vector_dataframe):
+    temp = vector_dataframe.loc[[vector1_index, vector2_index]] 
+    return np.linalg.norm(temp.iloc[1] - temp.iloc[0])
 
-def add_weights(vector_dataframe_with_dx):
-    res = vector_dataframe_with_dx.copy()
-    total = res['dx'].sum()
-    temp = res['dx'] / total
-    res['weight'] = temp
-    return res
-    
+def compute_dx(vector_index, vector_dataframe, centroid_index_list):
+    min_centroid_index = None
+    min_centroid_dist = None
+    for centroid_index in centroid_index_list:
+        temp = calc_dist(vector_index, centroid_index, vector_dataframe)
+        if (min_centroid_index is None or min_centroid_dist > temp):
+            min_centroid_dist = temp
+            min_centroid_index = centroid_index
+    return min_centroid_dist
+
+
+def compute_dx_tuple(vector_dataframe, centroid_index_list):
+    return [compute_dx(vector_index, vector_dataframe, centroid_index_list) for vector_index in vector_dataframe.index.values]
+
+
+def compute_weights(vector_dataframe, centroid_index_list):
+    dx_tuple = compute_dx_tuple(vector_dataframe, centroid_index_list)
+    return dx_tuple/sum(dx_tuple)
+
 def compute_centroids(vector_dataframe, k):
     centroid_index_list = []
     for _ in range(k):
         if len(centroid_index_list) == 0:
             temp = np.random.choice(vector_dataframe.index.values)
         else:
-            temp_db = vector_dataframe.copy()
-            for i in range(len(centroid_index_list)):
-                temp_series = get_centroid_distance_series(centroid_index_list[i], vector_dataframe)
-                temp_db['c_' + str(centroid_index_list[i]) + '_dist'] = temp_series
-            temp_db = add_dx(temp_db)
-            temp_db = add_weights(temp_db)
-            temp = np.random.choice(vector_dataframe.index.values, p = temp_db['weight'])
+            weight_list = compute_weights(vector_dataframe, centroid_index_list)
+            temp = np.random.choice(vector_dataframe.index.values, p = weight_list)
         centroid_index_list.append(temp)
     return centroid_index_list
 
