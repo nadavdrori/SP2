@@ -4,8 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def calc(db, k):
-    kmeans = KMeans(init = 'k-means++', n_clusters=k, n_init = 'auto', random_state=0)
-    kmeans.fit_predict(db)
+    #db = iris_dataset.data
+    kmeans = KMeans(init = 'k-means++', n_clusters=k, n_init = 'auto', random_state=0).fit(db)
     return (kmeans.inertia_)
         
 if __name__ == "__main__":
