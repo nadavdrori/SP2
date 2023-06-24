@@ -1,11 +1,12 @@
+import matplotlib       # Doesn't works on Nova if this line is removed
+matplotlib.use('Agg')   # Doesn't works on Nova if this line is removed
 from sklearn.datasets import load_iris
 from sklearn.cluster import KMeans
 import numpy as np
 import matplotlib.pyplot as plt
 
 def calc(db, k):
-    #db = iris_dataset.data
-    kmeans = KMeans(init = 'k-means++', n_clusters=k, n_init = 'auto', random_state=0).fit(db)
+    kmeans = KMeans(init = 'k-means++', n_clusters=k, random_state=0).fit(db)
     return (kmeans.inertia_)
         
 if __name__ == "__main__":

@@ -124,7 +124,7 @@ def main():
     results = km.fit(iter, eps, k, vec_num, vec_size, temp_coor_arr, temp)
     
     print(','.join([str(item) for item in temp]))
-    print('\n'.join( [vector_str(vector) for vector in get_vector_list_from_data(results, vec_size)] ))
+    print('\n'.join( [vector_str(vector) for vector in get_vector_list_from_data(results, vec_size)] ) + "\n")
     
     return 0
 

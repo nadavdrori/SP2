@@ -1,0 +1,251 @@
+nova:~/work> cd
+cd                cd-create-profile cd-fix-profile    cd-iccdump        cd-it8            
+nova:~/work> cd 
+proj2/     SW_PROJ_2/ try/       
+nova:~/work> cd SW_PROJ_2/
+nova:~/work/SW_PROJ_2> git clone git@github.com:nadavdrori/SP2.git
+Cloning into 'SP2'...
+Enter passphrase for key '/a/home/cc/students/cs/liorbelenkov/.ssh/id_ed25519': 
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+nova:~/work/SW_PROJ_2> git clone git@github.com:nadavdrori/SP2.git
+Cloning into 'SP2'...
+Enter passphrase for key '/a/home/cc/students/cs/liorbelenkov/.ssh/id_ed25519': 
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+nova:~/work/SW_PROJ_2> git clone https://github.com/nadavdrori/SP2.git
+Cloning into 'SP2'...
+remote: Enumerating objects: 57, done.
+remote: Counting objects: 100% (57/57), done.
+remote: Compressing objects: 100% (39/39), done.
+remote: Total 57 (delta 20), reused 53 (delta 16), pack-reused 0
+Unpacking objects: 100% (57/57), done.
+nova:~/work/SW_PROJ_2> cd 
+separate/ SP2/      
+nova:~/work/SW_PROJ_2> cd SP2/
+nova:~/work/SW_PROJ_2/SP2> python3 setup.py build_ext --inplace
+running build_ext
+building 'kmeansmodule' extension
+creating build
+creating build/temp.linux-x86_64-3.6
+x86_64-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -I/usr/include/python3.6m -c kmeansmodule.c -o build/temp.linux-x86_64-3.6/kmeansmodule.o
+x86_64-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -I/usr/include/python3.6m -c kmeans.c -o build/temp.linux-x86_64-3.6/kmeans.o
+creating build/lib.linux-x86_64-3.6
+x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-Bsymbolic-functions -Wl,-z,relro -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 build/temp.linux-x86_64-3.6/kmeansmodule.o build/temp.linux-x86_64-3.6/kmeans.o -o build/lib.linux-x86_64-3.6/kmeansmodule.cpython-36m-x86_64-linux-gnu.so
+copying build/lib.linux-x86_64-3.6/kmeansmodule.cpython-36m-x86_64-linux-gnu.so -> 
+nova:~/work/SW_PROJ_2/SP2> python3 km
+kmeans.c                                      kmeansmodule.cpython-36m-x86_64-linux-gnu.so* kmeans_pp.py                                  
+kmeansmodule.c                                kmeans_pp_old.py                              
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans
+kmeans.c                                      kmeansmodule.cpython-36m-x86_64-linux-gnu.so* kmeans_pp.py                                  
+kmeansmodule.c                                kmeans_pp_old.py                              
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_
+kmeans_pp_old.py  kmeans_pp.py      
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 3 333 0 input/
+input_1_db_1.txt  input_1_db_2.txt  input_1.txt       input_2_db_1.txt  input_2_db_2.txt  input_2.txt       input_3_db_1.txt  input_3_db_2.txt  input_3.txt       test_readme.txt 
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 3 333 0 input//
+input_1_db_1.txt  input_1_db_2.txt  input_1.txt       input_2_db_1.txt  input_2_db_2.txt  input_2.txt       input_3_db_1.txt  input_3_db_2.txt  input_3.txt       test_readme.txt 
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 3 333 0 input//in
+input_1_db_1.txt  input_1_db_2.txt  input_1.txt       input_2_db_1.txt  input_2_db_2.txt  input_2.txt       input_3_db_1.txt  input_3_db_2.txt  input_3.txt       
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 3 333 0 input//input_1_db
+input_1_db_1.txt  input_1_db_2.txt  
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 3 333 0 input//input_1_db_1.txt input//input_1_db_2.txt
+44,56,75
+-5.7674,-7.4071,8.0725,-8.3855
+-4.4647,9.2494,5.2826,9.4125
+-8.6121,0.9026,-8.0698,-2.7475
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 3 333 0 input//input_1_db_1.txt input//input_1_db_2.txt
+44,56,75
+-5.7674,-7.4071,8.0725,-8.3855
+-4.4647,9.2494,5.2826,9.4125
+-8.6121,0.9026,-8.0698,-2.7475
+
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 3 333 0 input//input_1_db_1.txt input//input_1_db_2.txt
+44,56,75
+-5.7674,-7.4071,8.0725,-8.3855
+-4.4647,9.2494,5.2826,9.4125
+-8.6121,0.9026,-8.0698,-2.7475
+
+nova:~/work/SW_PROJ_2/SP2> 
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 3 333 0 input//input_1_db_1.txt input//input_1_db_2.txt
+44,56,75
+-5.7674,-7.4071,8.0725,-8.3855
+-4.4647,9.2494,5.2826,9.4125
+-8.6121,0.9026,-8.0698,-2.7475
+
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 7 0 input//input_2_db_1.txt input//input_2_db_2.txt
+172,258,362,367,364,254,155
+-1.0078,-8.6216,-3.8204,8.9163,-4.4276,-4.7488,-1.8945,6.8845
+-8.3881,0.9055,-8.2414,-2.1348,3.4541,-1.4735,-9.2621,-6.0808
+0.3978,-4.7027,-3.2656,9.5738,-6.4382,-5.0631,3.7241,-2.3435
+-3.2795,7.9766,6.5437,4.8341,-0.7500,7.1848,-4.3804,-8.1623
+-4.0820,9.1629,5.3056,9.9094,-5.9005,-7.3476,8.1270,-8.8715
+-1.0143,3.4984,-8.0842,-5.4450,0.5113,-8.5467,-8.4626,-8.4740
+-7.0574,-0.2220,-3.8604,-4.0847,-9.7562,1.6880,4.3006,-1.8364
+
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 15 750 0 input//input_3_db_1.txt input//input_3_db_2.txt
+2732,2975,4236,4294,4251,3087,1904,1476,304,1373,2389,4066,2406,1977,4221
+0.1378,-4.6096,-3.1999,9.4366,-6.2418,-5.1583
+0.9258,-0.6437,7.0899,6.5071,-8.4253,-3.6183
+8.2550,-8.6250,-8.5393,0.7220,-8.1518,-2.3517
+7.0813,5.3374,-0.7475,6.8151,-4.6426,-8.4891
+-9.2513,5.5689,-6.4047,-1.9701,6.4947,-1.2287
+3.4753,-1.4058,-9.1500,-6.1826,-1.0165,-8.7322
+-6.9850,-0.0434,-3.8976,-3.9083,-9.7318,1.5519
+0.6636,-9.1755,-4.7293,-4.4787,-3.5501,5.3029
+4.3474,-1.8605,-6.8533,-5.8541,5.2538,-2.7348
+6.2333,4.8047,-0.5092,8.0360,-4.2270,-8.2015
+-2.3150,5.1013,7.3116,5.0498,-2.0333,-1.5983
+-4.3402,9.2005,5.4223,9.7728,-5.7757,-7.2221
+-1.5902,3.1975,2.6958,0.3196,-3.0125,-9.1551
+-4.0191,8.7980,-4.2552,-4.6566,-1.7074,6.5654
+3.9239,-2.2228,-0.8247,3.5273,-8.3317,-5.3744
+
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 15 0 0 input//input_3_db_1.txt input//input_3_db_2.txt
+Invalid maximum iteration!
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 15 5000 0 input//input_3_db_1.txt input//input_3_db_2.txt
+Invalid maximum iteration!
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 15000 500 0 input//input_3_db_1.txt input//input_3_db_2.txt
+Invalid number of clusters!
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py -1 500 0 input//input_3_db_1.txt input//input_3_db_2.txt
+Invalid number of clusters!
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py -1 input//input_3_db_1.txt input//input_3_db_2.txt
+An Error Has Occurred
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py -1 input//input_3_db_1.txt input//input_3_db_2.tx
+An Error Has Occurred
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 50 50 input//input_3_db_1.txt input//input_3_db_2.tx
+Traceback (most recent call last):
+  File "kmeans_pp.py", line 132, in <module>
+    main()
+  File "kmeans_pp.py", line 113, in main
+    db = create_vector_dataframe(filename1, filename2)
+  File "kmeans_pp.py", line 16, in create_vector_dataframe
+    db2 = pd.read_csv(file2, header=None)
+  File "/usr/lib/python3/dist-packages/pandas/io/parsers.py", line 709, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/usr/lib/python3/dist-packages/pandas/io/parsers.py", line 449, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/usr/lib/python3/dist-packages/pandas/io/parsers.py", line 818, in __init__
+    self._make_engine(self.engine)
+  File "/usr/lib/python3/dist-packages/pandas/io/parsers.py", line 1049, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/usr/lib/python3/dist-packages/pandas/io/parsers.py", line 1695, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 402, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 718, in pandas._libs.parsers.TextReader._setup_parser_source
+FileNotFoundError: File b'input//input_3_db_2.tx' does not exist
+nova:~/work/SW_PROJ_2/SP2> python3 kmeans_pp.py 50 50 input//input_3_db_1.txt 
+An Error Has Occurred
+nova:~/work/SW_PROJ_2/SP2> python3 bonus.py
+/usr/lib/python3/dist-packages/matplotlib/font_manager.py:281: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
+  'Matplotlib is building the font cache using fc-list. '
+Traceback (most recent call last):
+  File "bonus.py", line 13, in <module>
+    y = [calc(db, k+1) for k in range(10)]
+  File "bonus.py", line 13, in <listcomp>
+    y = [calc(db, k+1) for k in range(10)]
+  File "bonus.py", line 7, in calc
+    kmeans = KMeans(init = 'k-means++', n_clusters=k, n_init = 'auto', random_state=0).fit(db)
+  File "/usr/lib/python3/dist-packages/sklearn/cluster/k_means_.py", line 896, in fit
+    return_n_iter=True)
+  File "/usr/lib/python3/dist-packages/sklearn/cluster/k_means_.py", line 274, in k_means
+    if n_init <= 0:
+TypeError: '<=' not supported between instances of 'str' and 'int'
+nova:~/work/SW_PROJ_2/SP2> python3 bonus.py
+Traceback (most recent call last):
+  File "bonus.py", line 16, in <module>
+    fig, ax = plt.subplots()
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 1176, in subplots
+    fig = figure(**fig_kw)
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 539, in figure
+    **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/backend_bases.py", line 171, in new_figure_manager
+    return cls.new_figure_manager_given_figure(num, fig)
+  File "/usr/lib/python3/dist-packages/matplotlib/backends/backend_tkagg.py", line 1049, in new_figure_manager_given_figure
+    window = Tk.Tk(className="matplotlib")
+  File "/usr/lib/python3.6/tkinter/__init__.py", line 2023, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+_tkinter.TclError: no display name and no $DISPLAY environment variable
+nova:~/work/SW_PROJ_2/SP2> python3 bonus.py
+bonus.py:6: UserWarning: 
+This call to matplotlib.use() has no effect because the backend has already
+been chosen; matplotlib.use() must be called *before* pylab, matplotlib.pyplot,
+or matplotlib.backends is imported for the first time.
+
+The backend was *originally* set to 'TkAgg' by the following code:
+  File "bonus.py", line 5, in <module>
+    import matplotlib.pyplot as plt
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 72, in <module>
+    from matplotlib.backends import pylab_setup
+  File "/usr/lib/python3/dist-packages/matplotlib/backends/__init__.py", line 14, in <module>
+    line for line in traceback.format_stack()
+
+
+  matplotlib.use('Agg')
+Traceback (most recent call last):
+  File "bonus.py", line 18, in <module>
+    fig, ax = plt.subplots()
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 1176, in subplots
+    fig = figure(**fig_kw)
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 539, in figure
+    **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/backend_bases.py", line 171, in new_figure_manager
+    return cls.new_figure_manager_given_figure(num, fig)
+  File "/usr/lib/python3/dist-packages/matplotlib/backends/backend_tkagg.py", line 1049, in new_figure_manager_given_figure
+    window = Tk.Tk(className="matplotlib")
+  File "/usr/lib/python3.6/tkinter/__init__.py", line 2023, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+_tkinter.TclError: no display name and no $DISPLAY environment variable
+nova:~/work/SW_PROJ_2/SP2> python3 bonus.py
+Traceback (most recent call last):
+  File "bonus.py", line 16, in <module>
+    fig, ax = plt.subplots()
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 1176, in subplots
+    fig = figure(**fig_kw)
+  File "/usr/lib/python3/dist-packages/matplotlib/pyplot.py", line 539, in figure
+    **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/backend_bases.py", line 171, in new_figure_manager
+    return cls.new_figure_manager_given_figure(num, fig)
+  File "/usr/lib/python3/dist-packages/matplotlib/backends/backend_tkagg.py", line 1049, in new_figure_manager_given_figure
+    window = Tk.Tk(className="matplotlib")
+  File "/usr/lib/python3.6/tkinter/__init__.py", line 2023, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+_tkinter.TclError: no display name and no $DISPLAY environment variable
+nova:~/work/SW_PROJ_2/SP2> python3 bonus.py
+nova:~/work/SW_PROJ_2/SP2> python3 bonus.py
+nova:~/work/SW_PROJ_2/SP2> python3 bonus.py
+nova:~/work/SW_PROJ_2/SP2> cd.
+cd.: Command not found.
+nova:~/work/SW_PROJ_2/SP2> cd 
+nova:~> 
+build/    personal/ work/     
+nova:~> cd \\work
+\work: No such file or directory.
+nova:~> cd work
+nova:~/work> cd SW_PROJ_2/
+nova:~/work/SW_PROJ_2> cd separate/
+nova:~/work/SW_PROJ_2/separate> cd .
+nova:~/work/SW_PROJ_2/separate> cd ..
+nova:~/work/SW_PROJ_2> zip -r 208935882_319125134_assignment2.zip 208935882_319125134_assignment2
+  adding: 208935882_319125134_assignment2/ (stored 0%)
+  adding: 208935882_319125134_assignment2/kmeans_pp.py (deflated 70%)
+  adding: 208935882_319125134_assignment2/kmeansmodule.c (deflated 61%)
+  adding: 208935882_319125134_assignment2/setup.py (deflated 37%)
+  adding: 208935882_319125134_assignment2/bonus.py (deflated 48%)
+  adding: 208935882_319125134_assignment2/cap.h (deflated 35%)
+  adding: 208935882_319125134_assignment2/kmeans.c (deflated 82%)
+nova:~/work/SW_PROJ_2> cd SP2
+nova:~/work/SW_PROJ_2/SP2> git add bonus.py
+nova:~/work/SW_PROJ_2/SP2> git add kmeans_p
+kmeans_pp_old.py  kmeans_pp.py      
+nova:~/work/SW_PROJ_2/SP2> git add kmeans_pp.py
+nova:~/work/SW_PROJ_2/SP2> git add 20
+208935882_319125134_assignment2_old.zip  208935882_319125134_assignment2.zip      
+nova:~/work/SW_PROJ_2/SP2> git add 208935882_319125134_assignment2.zip 
+nova:~/work/SW_PROJ_2/SP2> 
